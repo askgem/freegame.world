@@ -22,6 +22,7 @@ body{
 }
 
 #search-result {
+    background: rgba(255,255,255,0.5);
     width: 500px;
     z-index: 1;
     display: flex;

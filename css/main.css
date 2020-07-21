@@ -1,0 +1,44 @@
+canvas {
+    z-index: -1;
+    display: block;
+}
+
+body{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+#search-bar {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.logo {
+}
+
+#search-bar .input {
+}
+
+#search-result {
+    width: 500px;
+    z-index: 1;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+#search-result .result-item {
+    z-index: 2;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+#search-result .result-item a {
+    font-weight: bold;
+    font-size: medium;
+}
+
+#search-result .result-item .url {
+    color: #3A7734;
+}

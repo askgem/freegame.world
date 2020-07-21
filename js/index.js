@@ -26,7 +26,7 @@ function googleSearch() {
 	// const baseUrl = "http://localhost:5000/search?keyword=";
 	const baseUrl = "https://api.cognitive.microsoft.com/bing/v7.0/search?q=";
 	const sub_key = "dbd26bf4d9f7408387421d019e8c7516";
-	let keyword = searchBox.value;
+	let keyword = searchBar.$data.keyword;
 
 	axios({
 		method: "GET",

@@ -3,10 +3,11 @@ canvas {
     display: block;
 }
 
-body{
+body {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
+    height: 100vh;
 }
 
 #search-bar {
@@ -22,24 +23,46 @@ body{
 }
 
 #search-result {
-    background: rgba(255,255,255,0.5);
-    width: 500px;
+    width: 90%;
     z-index: 1;
     display: flex;
     flex-flow: column nowrap;
+    overflow: scroll;
+    /*height: 100vh;*/
+    flex: 1;
+}
+
+
+#search-result button {
+    margin-top: 5px;
+    align-self: center;
+    padding: 0 20px;
+    width: fit-content;
 }
 
 #search-result .result-item {
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 12px;
+    font: 13px/normal system-ui, sans-serif;
     z-index: 2;
     display: flex;
     flex-flow: column nowrap;
+    background: rgba(255, 255, 255, 0.4);
+    min-height: fit-content;
+    box-shadow: rgba(0,0,0,0.3) 0 3px 6px;
 }
 
 #search-result .result-item a {
     font-weight: bold;
     font-size: medium;
+    text-shadow: white 0 0 10px;
 }
 
 #search-result .result-item .url {
     color: #3A7734;
+}
+
+#search-result .result-item span {
+    text-shadow: white 0 0 10px;
 }

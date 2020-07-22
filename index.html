@@ -27,6 +27,7 @@
 </div>
 
 <div id="search-result">
+<!--	<button v-if="result.length == 0" v-on:click="result=[]">Clear</button>-->
 	<button v-if="result.length != 0" v-on:click="result=[]">Clear</button>
 	<div v-for="(item,index) in result" :key="index" class="result-item">
 		<a :href="item.url">{{item.name}}</a>

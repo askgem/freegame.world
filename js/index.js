@@ -24,10 +24,12 @@ var searchResult = new Vue({
 // Key 1: dbd26bf4d9f7408387421d019e8c7516
 function googleSearch() {
 	// const baseUrl = "http://localhost:5000/search?keyword=";
+	// Preparation
 	const baseUrl = "https://api.cognitive.microsoft.com/bing/v7.0/search?q=";
 	const sub_key = "dbd26bf4d9f7408387421d019e8c7516";
+	// Getting user input
 	let keyword = searchBar.$data.keyword;
-
+	// Bing Search API Call
 	axios({
 		method: "GET",
 		url: baseUrl + encodeURIComponent(keyword),

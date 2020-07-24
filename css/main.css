@@ -66,3 +66,10 @@ body {
 #search-result .result-item span {
     text-shadow: white 0 0 10px;
 }
+
+canvas, video{
+    /* display: flex; */
+    position: absolute;
+    height: 100vh !important;
+    width: 100vw !important;
+}

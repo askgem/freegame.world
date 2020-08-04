@@ -16,6 +16,7 @@
 	<!-- axios.js -->
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<link rel="stylesheet" href="css/main.css">
+	<!-- <script src="http://localhost:8098"></script> -->
 </head>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
@@ -140,13 +141,22 @@
 		//////////////////////////////////////////////////////////////////////////////////
 		var arWorldRoot = smoothedRoot
 		// add a torus knot
-		var geometry = new THREE.BoxGeometry(1, 1, 1);
-		var material = new THREE.MeshNormalMaterial({
-			transparent: true,
-			opacity: 0.5,
-			side: THREE.DoubleSide
+		// var geometry = new THREE.BoxGeometry(1, 1, 1);
+		// var material = new THREE.MeshNormalMaterial({
+		// 	transparent: true,
+		// 	opacity: 0.5,
+		// 	side: THREE.DoubleSide
+		// });
+		// Add customized obj.
+		var geometry = new THREE.BoxGeometry(200, 200);
+		var img = new THREE.MeshBasicMaterial({ //CHANGED to MeshBasicMaterial
+			map: THREE.ImageUtils.loadTexture('assets/IMG_5561.PNG')
 		});
-		var mesh = new THREE.Mesh(geometry, material);
+		img.map.needsUpdate = true; //ADDED
+
+
+		var mesh = new THREE.Mesh(geometry, img);
+		// var mesh = new THREE.Mesh(geometry, material);
 		mesh.position.y = geometry.parameters.height / 2
 		arWorldRoot.add(mesh);
 		var geometry = new THREE.TorusKnotGeometry(0.3, 0.1, 64, 16);

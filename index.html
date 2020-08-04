@@ -3,20 +3,37 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-	<!-- three.js library -->
+	<!-- a-frame -->
 	<script
-			src='https://cdn.rawgit.com/jeromeetienne/AR.js/master/three.js/examples/vendor/three.js/build/three.min.js'></script>
-	<script
-			src="https://cdn.rawgit.com/jeromeetienne/AR.js/master/three.js/examples/vendor/three.js/examples/js/libs/stats.min.js"></script>
+			src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
 	<!-- ar.js -->
-	<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/master/three.js/build/ar.js"></script>
-	<script>THREEx.ArToolkitContext.baseURL = 'https://cdn.rawgit.com/jeromeetienne/AR.js/master/three.js/examples/'</script>
+	<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
 	<!-- vue.js -->
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<!-- axios.js -->
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<link rel="stylesheet" href="css/main.css">
 	<!-- <script src="http://localhost:8098"></script> -->
+	<style>
+		.arjs-loader {
+			height: 100%;
+			width: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background-color: rgba(0, 0, 0, 0.8);
+			z-index: 9999;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.arjs-loader div {
+			text-align: center;
+			font-size: 1.25em;
+			color: white;
+		}
+	</style>
 </head>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
@@ -37,47 +54,25 @@
 			<span>{{item.snippet}}</span>
 		</div>
 	</div>
-	<script src="js/index.js"></script>
-	<script>
-		var renderer = new THREE.WebGLRenderer();
-		renderer.setSize(window.innerWidth, window.innerHeight);
-		document.body.appendChild(renderer.domElement);
 
-		// camera
-		var camera = new THREE.PerspectiveCamera(95, window.innerWidth / window.innerHeight, 1, 1000);
-		camera.position.y = -250;
-		camera.position.z = 400;
-		camera.rotation.x = 45 * (Math.PI / 180);
+	<div class="arjs-loader">
+		<div>Loading, please wait...</div>
+	</div>
+	<a-scene vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded
+			 arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;">
+		<!-- we use cors proxy to avoid cross-origin problems -->
+		<a-nft type="nft"
+			   url="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/trex-image/trex"
+			   smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5">
+			<a-entity gltf-model="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/scene.gltf"
+					  scale="5 5 5" position="50 150 0">
+			</a-entity>
+		</a-nft>
+		<a-entity camera></a-entity>
 
-		// scene
-		var scene = new THREE.Scene();
-		scene.add(camera); //ADDED
-
-		var img = new THREE.MeshBasicMaterial({ //CHANGED to MeshBasicMaterial
-			map: new THREE.TextureLoader().load('assets/IMG_5561.PNG')
-		});
-
-		// plane
-		var plane = new THREE.Mesh(new THREE.PlaneGeometry(400, 400), img);
-		plane.overdraw = true;
-		scene.add(plane);
-
-		// add subtle ambient lighting
-		var ambientLight = new THREE.AmbientLight(0x555555);
-		scene.add(ambientLight);
-
-		// add directional light source
-		var directionalLight = new THREE.DirectionalLight(0xffffff);
-		directionalLight.position.set(1, 1, 1).normalize();
-		scene.add(directionalLight);
-
-		// create wrapper object that contains three.js objects
-		var three = {
-			renderer: renderer,
-			camera: camera,
-			scene: scene,
-			plane: plane
-		};
-		renderer.render(scene, camera);
-	</script>
+		<!-- ar.js -->
+		<script>
+		</script>
+		<!-- Vue.js -->
+		<script src="js/index.js"></script>
 </body>
